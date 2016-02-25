@@ -4,7 +4,7 @@
   <groupId>com.iland.core</groupId>
   <artifactId>iland-sdk</artifactId>
   <name>iland cloud Java SDK</name>
-  <version>0.0.2-SNAPSHOT</version>
+  <version>0.0.2</version>
   <description>Java SDK for the iland cloud REST API</description>
   <build>
     <plugins>
