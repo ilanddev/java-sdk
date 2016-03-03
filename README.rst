@@ -5,8 +5,9 @@ iland cloud Java SDK
 iland cloud Python SDK
 
 * Free software: BSD License
-* Java doc: https://api.ilandcloud.com.
 * iland cloud API doc: https://api.ilandcloud.com.
+* Java doc: https://api.ilandcloud.com.
+* iland doc: http://doc.ilandcloud.com.
 
 ============
 Introduction
@@ -22,7 +23,7 @@ library is intended to make it even easier for Java programmers to use.
 Installation
 ============
 
-In your maven configuration start adding a repository from where you will get the iland cloud SDK artifacts::
+In your maven configuration start adding a the iland cloud SDK maven artifacts repository::
 
     <repositories>
         <repository>
@@ -34,7 +35,7 @@ In your maven configuration start adding a repository from where you will get th
             </snapshots>
     </repository>
 
-You can add the iland cloud SDK as a dependency::
+You can then add the iland cloud SDK as a dependency::
 
     <dependency>
         <groupId>com.iland.core</groupId>
