@@ -2,12 +2,7 @@
 History
 =======
 
-0.0.2 (2016-2-25)
+0.0.3 (2016-3-03)
 ------------------
 
-* Minor fixes.
-
-0.0.1 (2016-2-23)
-------------------
-
-* Initial release.
+* Initial releass off iland core 8.11
