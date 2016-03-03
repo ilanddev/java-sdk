@@ -2,7 +2,7 @@
 iland cloud Java SDK
 ===============================
 
-iland cloud Python SDK
+iland cloud Java SDK
 
 * Free software: BSD License
 * iland cloud API doc: https://api.ilandcloud.com.
