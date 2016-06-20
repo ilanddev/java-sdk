@@ -2,6 +2,11 @@
 History
 =======
 
+0.2.0 (2016-06-20)
+------------------
+
+* introducted new API versioning scheme. No BBB w/ 0.0.x
+
 0.0.14 (2016-06-17)
 ------------------
 
