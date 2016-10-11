@@ -1,6 +1,6 @@
-===============================
+====================
 iland cloud Java SDK
-===============================
+====================
 
 iland cloud Java SDK
 
@@ -40,5 +40,6 @@ You can then add the iland cloud SDK as a dependency::
     <dependency>
         <groupId>com.iland.core</groupId>
         <artifactId>iland-sdk</artifactId>
-        <version>0.2.1</version>
+        <version>0.2.2</version>
     </dependency>
+
