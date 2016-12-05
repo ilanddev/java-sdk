@@ -12,3 +12,4 @@ Contributors
 
 * Brett Snyder <bsnyder@iland.com>
 * Cory Snyder <csnyder@iland.com>
+* Nick Kasprzak <nkasprzak@iland.com>
