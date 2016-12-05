@@ -2,15 +2,16 @@
 History
 =======
 
-0.2.4 (unreleased)
+0.2.5 (2016-12-05)
 ------------------
 
-*
+* iland cloud platform 8.50
+* apidocs
 
 0.2.4 (2016-12-05)
 ------------------
 
-* iland cloud platform 8.50
+* iland cloud platform 8.59
 
 0.2.3 (2016-11-22)
 ------------------
