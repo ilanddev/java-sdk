@@ -40,6 +40,6 @@ You can then add the iland cloud SDK as a dependency::
     <dependency>
         <groupId>com.iland.core</groupId>
         <artifactId>iland-sdk</artifactId>
-        <version>0.2.6</version>
+        <version>0.2.8</version>
     </dependency>
 
