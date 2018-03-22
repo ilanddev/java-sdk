@@ -13,6 +13,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import com.iland.core.api.entity.EntityTreeNode;
 import com.iland.core.api.entity.EntityType;
 import com.iland.core.api.entity.OrgEntityTree;
@@ -331,6 +333,13 @@ public class App {
               vappTemplateUpload.uploadVappTemplate(catalogUuid, spec);
           if (!s.equals("")) {
             // means all chunks are uploaded and we have a core task
+            final JsonParser jsonParser = new JsonParser();
+            final JsonObject coreTask = jsonParser.parse(s).getAsJsonObject();
+            final CoreTask uploadVappTemplate =
+                getTask(coreTask.get("uuid").getAsString(),
+                    coreTask.get("location_id").getAsString());
+            waitForSyncedTask(uploadVappTemplate.getUuid(),
+                uploadVappTemplate.getLocationId());
             break;
           }
           // otherwise read next chunk for processing
