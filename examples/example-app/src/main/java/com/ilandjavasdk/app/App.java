@@ -56,6 +56,8 @@ public class App {
   private static String vappTemplate = "";
 
   private static String networkUuid = "";
+  
+  private static String ERROR = "error";
 
   private static final Client apiClient;
 
@@ -264,8 +266,18 @@ public class App {
     final Vm vm = vms.get(0);
     final CoreTask startVm = vmResource.powerOnVm(vm.getUuid(), false);
     waitForSyncedTask(startVm.getUuid(), startVm.getLocationId());
+    final CoreTask syncedStartVmTask =
+        getTask(startVm.getUuid(), startVm.getLocationId());
+    if (syncedStartVmTask.getStatus().equals(ERROR)) {
+      System.out.println(syncedStartVmTask.getMessage());
+    }
     final CoreTask stopVm = vmResource.powerOffVm(vm.getUuid());
     waitForSyncedTask(stopVm.getUuid(), stopVm.getLocationId());
+    final CoreTask syncedStopVmTask =
+        getTask(stopVm.getUuid(), stopVm.getLocationId());
+    if (syncedStopVmTask.getStatus().equals(ERROR)) {
+      System.out.println(syncedStopVmTask.getMessage());
+    }
     return vm.getUuid();
   }
 
