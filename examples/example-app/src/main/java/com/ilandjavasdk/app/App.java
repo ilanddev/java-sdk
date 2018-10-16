@@ -4,20 +4,11 @@ import java.time.Instant;
 import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
 import com.iland.core.api.iam.IamEntityType;
-import com.iland.core.api.net.IpAddressingMode;
-import com.iland.core.api.net.IpRange;
-import com.iland.core.api.net.VappNetworkInitializationParams;
-import com.iland.core.api.task.CoreTask;
-import com.iland.core.api.vcd.FenceMode;
-import com.iland.core.api.vcd.User;
-import com.iland.core.api.vcd.VappSpec;
-import com.iland.core.api.vcd.VmSpec;
 import com.iland.core.web.rest.api.TaskResource;
 import com.iland.core.web.rest.api.UserResource;
 import com.iland.core.web.rest.api.VappResource;
@@ -93,7 +84,7 @@ public class App {
    * 
    * With the newly create vApp, we get it's VM and perform various operations on it.
    *
-   * Finally we download the vApp so we can upload as an OVA.
+   * Finally we delete the VM and vApp we created and logout.
    * 
    * @param args
    */
@@ -114,7 +105,7 @@ public class App {
   }
 
   /**
-   * When given a {@link User} user, we get all the entities they have
+   * When given a {@link UserResponse} user, we get all the entities they have
    * permissions for and print out every one.
    *
    * This function also sets vdcUuid, networkUuid, vappTemplateUuid and
@@ -122,7 +113,7 @@ public class App {
    *
    * These variables will be used when creating the vApp.
    *
-   * @param user {@link User} user
+   * @param user {@link UserResponse} user
    */
   private static void getUsersInventoryAndPrintAllEntities(
       final UserResponse user) {
@@ -164,12 +155,10 @@ public class App {
    * got. So we get the VMs associated with the vApp template and grab the first
    * one for our vApp creation.
    *
-   * To create a vApp we have to pass a vDC UUID and {@link VappSpec} vApp spec
-   * to the sdk.
+   * To create a vApp we have to pass a vDC UUID and
+   * {@link VdcAddVappFromTemplateRequest} vdc add vapp from template request to
+   * the sdk.
    *
-   * To create a VM within the vApp we must use a {@link VmSpec} VM spec to
-   * create it. Also if we want the vApp to be connected to a network we must
-   * use a {@link VappNetworkInitializationParams}.
    *
    * After creation we get the vApps from the vDC where we made it to confirm it
    * was made and return the vApp UUID related to it.
@@ -182,24 +171,8 @@ public class App {
     final String vmUuid = vappTemplateVms.getData().get(0).getUuid();
     final String vappName =
         "Test vApp from Java SDK - " + formatter.format(Instant.now());
-    final List<VmSpec> specs =
-        Collections.singletonList(new VmSpec("VM name", "VM description",
-            IpAddressingMode.POOL, networkUuid, null, vmUuid, "", null));
-    final List<IpRange> ipRanges = new ArrayList<>();
-    final IpRange ipRange = new IpRange("192.168.2.100", "192.168.2.149");
-    final IpRange ipRange2 = new IpRange("192.168.2.151", "192.168.2.160");
-    ipRanges.add(ipRange);
-    ipRanges.add(ipRange2);
-    final VappNetworkInitializationParams vappNetwork =
-        new VappNetworkInitializationParams(
-            "Test vApp Network from Java SDK - "
-                + formatter.format(Instant.now()),
-            "test net description", true, false, false, null, "192.168.2.1",
-            "255.255.255.0", null, null, "dns-suffix", ipRanges);
-    final VappSpec vappSpec = new VappSpec(vappTemplate, vappName,
-        "description", FenceMode.ISOLATED, specs, vappNetwork);
     final TemplateVmConfig templateVmConfig = new TemplateVmConfig(vmUuid,
-        "VM name", null, "VM desription", null, null);
+        "VM name", null, "VM description", null, null);
     final TaskResponse taskResponse = vdcResource.addVappFromTemplate(vdcUuid,
         new VdcAddVappFromTemplateRequest(vappTemplate, vappName, "description",
             Collections.singletonList(templateVmConfig)));
@@ -245,7 +218,7 @@ public class App {
    * @param vmUuid {@link String} vm uuid
    * @param vappUuid {@link String} vapp uuid
    */
-  private void deleteVmAndVapp(final String vmUuid, final String vappUuid) {
+  private static void deleteVmAndVapp(final String vmUuid, final String vappUuid) {
     final TaskResponse deleteVm = vmResource.delete(vmUuid);
     waitForSyncedTask(deleteVm.getUuid());
     final TaskResponse deleteVapp = vappResource.deleteVapp(vappUuid);
@@ -285,7 +258,7 @@ public class App {
    * Get a core task given it's UUID.
    * 
    * @param taskUuid {@link String} task UUID
-   * @return {@link CoreTask} core task
+   * @return {@link TaskResponse} core task
    */
   private static TaskResponse getTask(final String taskUuid) {
     return taskResource.getTask(taskUuid);
