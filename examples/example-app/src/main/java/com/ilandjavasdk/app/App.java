@@ -43,6 +43,8 @@ public class App {
   private static String vappTemplate = "";
 
   private static String networkUuid = "";
+  
+  private static String ERROR = "error";
 
   private static final Client apiClient;
 
