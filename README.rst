@@ -6,7 +6,7 @@ iland cloud Java SDK for iland cloud API 0.9
 
 * Free software: BSD License
 * iland cloud API doc: https://us-east-1.api.ilandcloud.com/doc/0.9/apidocs/.
-* Java doc: https://api.ilandcloud.com/java/apidocs/0.9.5/.
+* Java doc: https://api.ilandcloud.com/java/apidocs/0.9.6/.
 * iland doc: http://doc.ilandcloud.com.
 
 ============
