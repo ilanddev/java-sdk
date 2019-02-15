@@ -2,10 +2,16 @@
 History
 =======
 
+0.9.8 (2019-02-15)
+------------------
+
+* New endpoint to get the product section properties for a vApp template. VappTemplateResource.getProductSectionProperties()
+
 0.9.7 (2018-11-13)
 ------------------
 
-* Minor update and bug fixes
+- New endpoint to get the product section properties for VM. VmResource.getProductSectionProperties()
+- New endpoint to update the product section properties for VM. VmResource.updateProductSectionProperties()
 
 0.9.6 (2018-11-02)
 ------------------
