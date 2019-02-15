@@ -24,6 +24,7 @@ import com.iland.core.api.net.VappNetworkInitializationParams;
 import com.iland.core.api.task.CoreTask;
 import com.iland.core.api.vcd.CatalogUploadVappTemplateSpec;
 import com.iland.core.api.vcd.FenceMode;
+import com.iland.core.api.vcd.ProductSectionProperty;
 import com.iland.core.api.vcd.User;
 import com.iland.core.api.vcd.Vapp;
 import com.iland.core.api.vcd.VappSpec;
@@ -113,6 +114,7 @@ public class App {
     login();
     final User user = userResource.getUser(property.getUsername());
     getUsersInventoryAndPrintAllEntities(user);
+    printVmAndVappTemplateProductSections();
     if (!catalogUuid.isEmpty() && !vdcUuid.isEmpty() && !vappTemplate.isEmpty()
         && !networkUuid.isEmpty()) {
       final String vappUuid = createVapp();
@@ -190,6 +192,27 @@ public class App {
         }
       }
     }
+  }
+
+  /**
+   * Get the product section properties for a given vapp template and vm and prints them out.
+   *
+   */
+  private static void printVmAndVappTemplateProductSections() {
+      final String vappTemplateUuid = "";
+      final String vmUuid = "";
+      final List<ProductSectionProperty> vmProductSectionProperties =
+              vmResource.getProductSectionProperties(vmUuid);
+      final List<ProductSectionProperty> vappTemplateResourceProductSectionProperties =
+              vappTemplateResource.getProductSectionProperties(vappTemplateUuid);
+      for (final ProductSectionProperty productSectionProperty : vmProductSectionProperties) {
+          System.out.println("key: " + productSectionProperty.getKey() + " value: "
+                  + productSectionProperty.getValue());
+      }
+      for (final ProductSectionProperty productSectionProperty : vappTemplateResourceProductSectionProperties) {
+          System.out.println("key: " + productSectionProperty.getKey() + " value: "
+                  + productSectionProperty.getValue());
+      }
   }
 
   /**
