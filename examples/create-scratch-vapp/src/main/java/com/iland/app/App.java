@@ -1,8 +1,5 @@
 package com.iland.app;
 
-import java.util.Collections;
-import java.util.List;
-
 import com.iland.core.api.iam.IamEntityType;
 import com.iland.core.web.rest.api.TaskResource;
 import com.iland.core.web.rest.api.UserResource;
@@ -17,13 +14,14 @@ import com.iland.core.web.rest.response.user.UserCompanyInventoryResponse;
 import com.iland.core.web.rest.response.user.UserInventoryResponse;
 import com.iland.core.web.rest.response.vapp.VappListResponse;
 import com.iland.core.web.rest.response.vapp.VappResponse;
-import com.iland.core.web.rest.response.vm.VmListResponse;
-import com.iland.core.web.rest.response.vm.VmResponse;
 import com.iland.core.web.sdk.Client;
 import com.iland.core.web.sdk.connection.OAuthException;
 
+import java.util.Collections;
+import java.util.List;
+
 /**
- * Example Java app that demonstrates basic use case of the iland's Java SDK.
+ * Example iland Java SDK app that demonstrates how to create a vApp from scratch.
  *
  */
 public class App {
@@ -54,7 +52,6 @@ public class App {
     vmResource = apiClient.getVmResource();
     String vdcUuid = printAndGetVdcUuids();
     String vappUuid = buildVappWithVms(vdcUuid);
-    preformExampleVmOperations(vappUuid);
     deleteVapp(vappUuid);
     apiClient.logout();
   }
@@ -137,22 +134,8 @@ public class App {
   }
 
   /**
-   * In this function, we start, stop a VM.
-   *
-   * @param vappUuid
-   */
-  static void preformExampleVmOperations(final String vappUuid) {
-    VmListResponse vms = vappResource.getVmsForVapp(vappUuid);
-    VmResponse vm = vms.getData().get(0);
-    TaskResponse startVm = vmResource.powerOnVm(vm.getUuid(), false);
-    waitForSyncedTask(startVm.getUuid());
-    TaskResponse stopVm = vmResource.powerOffVm(vm.getUuid());
-    waitForSyncedTask(stopVm.getUuid());
-  }
-
-  /**
    * Deletes the vApp.
-   * 
+   *
    * @param vappUuid
    */
   static void deleteVapp(String vappUuid) {
