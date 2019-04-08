@@ -20,6 +20,12 @@ This library provides a Java interface for the `iland cloud API
 library is intended to make it even easier for Java programmers to use.
 
 ============
+Documentation
+============
+
+For documentation on using iland's Java SDK check out our `Wiki <https://github.com/ilanddev/java-sdk/wiki>`_. 
+
+============
 Installation
 ============
 
