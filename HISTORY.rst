@@ -2,6 +2,14 @@
 History
 =======
 
+1.0.3 (2019-06-07)
+------------------
+
+* add an option to delete all templates when deleting catalog
+* flag VM backup restore points as local or copy
+* Add a query parameter to VmResource.getGuestCustomization to indicate whether passwords should be returned
+* VCC failover plan API
+
 1.0.2 (2019-03-28)
 ------------------
 
