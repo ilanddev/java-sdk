@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.concurrent.TimeUnit;
 import java.util.function.Consumer;
 
 import org.apache.commons.logging.Log;
@@ -126,9 +127,13 @@ public class App {
         webSocketClient.consumeEvents(orgEventConsumer, orgEventFilter);
 
     // Keeping the process alive so the web socket can consume events.
-    // Note that there is no error handling for interrupted or connection errors
-    // and that you should add try/catch block to handle such cases.
-    while (true) {
+    // Exit if interrupted exception is caught.
+    try {
+      while (true) {
+        Thread.sleep(TimeUnit.MINUTES.toMillis(5));
+      }
+    } catch (final InterruptedException e) {
+      System.exit(0);
     }
   }
   
