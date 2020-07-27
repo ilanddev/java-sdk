@@ -2,6 +2,11 @@
 History
 =======
 
+1.0.11 (2020-07-28)
+------------------
+
+* VBO new APIs and no more mobile push notifications API options
+
 1.0.10 (2020-07-08)
 ------------------
 
