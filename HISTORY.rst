@@ -2,6 +2,10 @@
 History
 =======
 
+1.0.20 (2021-01-03)
+------------------
+* deprecate legacy edge APIs part I
+
 1.0.20 (2020-12-17)
 ------------------
 * misc updates
