@@ -304,7 +304,7 @@
   <properties>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <github.global.server>github</github.global.server>
-    <iland.api.version>10.66-SNAPSHOT</iland.api.version>
+    <iland.api.version>10.67-SNAPSHOT</iland.api.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
 </project>
