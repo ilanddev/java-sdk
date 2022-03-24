@@ -6,7 +6,7 @@ iland cloud Java SDK for API v1.0
 
 * Free software: BSD License
 * iland cloud API doc: https://us-east-1.api.ilandcloud.com/doc/1.0/.
-* Java doc: https://api.ilandcloud.com/java/apidocs/1.0.41/.
+* Java doc: https://api.ilandcloud.com/java/apidocs/1.0.42/.
 * iland doc: http://doc.ilandcloud.com
 
 ============
@@ -46,6 +46,6 @@ You can then add the iland cloud SDK as a dependency::
     <dependency>
         <groupId>com.iland.core</groupId>
         <artifactId>iland-sdk</artifactId>
-        <version>1.0.41</version>
+        <version>1.0.42</version>
     </dependency>
 
